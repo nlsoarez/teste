@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de consulta de indicadores da Claro">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Biblioteca para ler Excel -->
+    <script src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <title>Consulta de Indicadores - Claro</title>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.eventos.momentoeditorial.com.br/wp-content/uploads/2020/07/logo-Claro-800x600px.png" 
+             alt="Logo Claro" 
+             class="logo"
+             loading="lazy">
+        <h1>Consulta de Indicadores</h1>
+        
+        <div id="status" class="status-info" style="display: none;"></div>
+        
+        <div class="input-group">
+            <label for="matricula" class="sr-only">Matrícula</label>
+            <input type="text" 
+                   id="matricula" 
+                   placeholder="Digite a matrícula"
+                   aria-label="Digite a matrícula para consulta">
+            <button id="consultar-btn">Consultar</button>
+        </div>
+        
+        <div id="resultado" class="resultado" aria-live="polite"></div>
+        
+        <div class="atualizacao-container">
+            <p class="atualizacao">Última atualização: <span id="data-atualizacao">--/-- --:--</span></p>
+            <button id="refresh-btn" class="refresh-btn" title="Atualizar dados">↻</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
