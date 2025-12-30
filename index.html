@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sistema de consulta de indicadores da Claro">
     <link rel="stylesheet" href="styles.css">
-    <!-- Biblioteca para ler Excel -->
-    <script src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- Biblioteca SheetJS para ler Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <title>Consulta de Indicadores - Claro</title>
+    <style>
+        .sharepoint-info {
+            background-color: #0078d4;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
+        <div class="sharepoint-info">
+            📊 Conectado ao SharePoint da Claro
+        </div>
+        
         <img src="https://www.eventos.momentoeditorial.com.br/wp-content/uploads/2020/07/logo-Claro-800x600px.png" 
              alt="Logo Claro" 
              class="logo"
@@ -23,8 +38,9 @@
             <label for="matricula" class="sr-only">Matrícula</label>
             <input type="text" 
                    id="matricula" 
-                   placeholder="Digite a matrícula"
-                   aria-label="Digite a matrícula para consulta">
+                   placeholder="Digite a matrícula (ex: N6088107)"
+                   aria-label="Digite a matrícula para consulta"
+                   autocomplete="off">
             <button id="consultar-btn">Consultar</button>
         </div>
         
@@ -32,7 +48,7 @@
         
         <div class="atualizacao-container">
             <p class="atualizacao">Última atualização: <span id="data-atualizacao">--/-- --:--</span></p>
-            <button id="refresh-btn" class="refresh-btn" title="Atualizar dados">↻</button>
+            <button id="refresh-btn" class="refresh-btn" title="Atualizar dados do SharePoint">↻</button>
         </div>
     </div>
 
