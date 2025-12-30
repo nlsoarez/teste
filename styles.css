@@ -1,65 +1,426 @@
-/* Adicione ao final do arquivo styles.css */
+/* =========================================== */
+/* VARIÁVEIS GLOBAIS */
+/* =========================================== */
+:root {
+  --primary-color: #dc0000;
+  --primary-hover: #a00000;
+  --success-color: #28a745;
+  --warning-color: #dc3545;
+  --warning-light: #ff9800;
+  --text-color: #333;
+  --light-gray: #f8f9fa;
+  --border-color: #dee2e6;
+  --info-color: #0078d4;
+}
 
+/* =========================================== */
+/* ESTILOS GERAIS */
+/* =========================================== */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* =========================================== */
+/* LOGO E CABEÇALHO */
+/* =========================================== */
+.logo {
+  width: 180px;
+  height: auto;
+  display: block;
+  margin: 0 auto 25px;
+  object-fit: contain;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* =========================================== */
+/* BADGE SHAREPOINT */
+/* =========================================== */
+.sharepoint-info {
+  background-color: var(--info-color);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* =========================================== */
+/* GRUPO DE ENTRADA */
+/* =========================================== */
+.input-group {
+  margin-bottom: 15px;
+}
+
+#matricula, #consultar-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  height: 44px;
+}
+
+#matricula {
+  border: 1px solid var(--border-color);
+  transition: border-color 0.3s;
+  text-transform: uppercase;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+#matricula:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(220, 0, 0, 0.1);
+}
+
+#consultar-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#consultar-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* =========================================== */
+/* MENSAGENS DE STATUS */
+/* =========================================== */
 .status-info {
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 14px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease-in;
+  display: none;
 }
 
 .status-info.loading {
-    background-color: rgba(0, 120, 212, 0.1);
-    color: #0078d4;
-    border: 1px solid #0078d4;
+  background-color: rgba(0, 120, 212, 0.1);
+  color: var(--info-color);
+  border: 1px solid var(--info-color);
 }
 
 .status-info.success {
-    background-color: rgba(40, 167, 69, 0.1);
-    color: var(--success-color);
-    border: 1px solid var(--success-color);
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+
+.status-info.warning {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: #ffc107;
+  border: 1px solid #ffc107;
 }
 
 .status-info.error {
-    background-color: rgba(220, 53, 69, 0.1);
-    color: var(--warning-color);
-    border: 1px solid var(--warning-color);
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--warning-color);
+  border: 1px solid var(--warning-color);
+}
+
+/* =========================================== */
+/* ÁREA DE RESULTADOS */
+/* =========================================== */
+.resultado {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  text-align: left;
+  background-color: var(--light-gray);
+}
+
+.employee-info {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.employee-info h2 {
+  font-size: 18px;
+  margin: 0 0 5px 0;
+  color: var(--text-color);
+}
+
+/* =========================================== */
+/* INDICADORES */
+/* =========================================== */
+.indicator-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.indicator-name {
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.indicator-value {
+  color: var(--success-color);
+  font-weight: bold;
+  text-align: right;
+  min-width: 60px;
+}
+
+.indicator-value.warning {
+  color: var(--warning-color);
+}
+
+.indicator-value.not-applicable {
+  color: #999;
+  font-style: italic;
+}
+
+.meta-value {
+  color: #666;
+  font-size: 0.95em;
+  min-width: 80px;
+  text-align: right;
+}
+
+.dpa-info {
+  margin: 15px 0 5px 0;
+}
+
+/* =========================================== */
+/* MENSAGENS DE ALERTA */
+/* =========================================== */
+.meta-warning {
+  color: var(--warning-light);
+  font-size: 0.85em;
+  font-style: italic;
+  padding-left: 12px;
+  border-left: 3px solid var(--warning-light);
+  margin: 5px 0 0 15px;
+}
+
+.error {
+  color: var(--warning-color);
+  font-weight: 500;
+}
+
+/* =========================================== */
+/* CERTIFICAÇÃO */
+/* =========================================== */
+.certification {
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.certification.success {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+
+.certification.warning {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--warning-color);
+  border: 1px solid var(--warning-color);
+}
+
+/* =========================================== */
+/* RODAPÉ E ATUALIZAÇÃO */
+/* =========================================== */
+.info-rodape {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed var(--border-color);
+  font-size: 12px;
+  color: #666;
+  text-align: center;
 }
 
 .atualizacao-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
 }
 
+.atualizacao {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* =========================================== */
+/* BOTÃO DE ATUALIZAÇÃO */
+/* =========================================== */
 .refresh-btn {
-    background: none;
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  background-color: white;
 }
 
 .refresh-btn:hover {
-    background-color: var(--light-gray);
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: rotate(180deg);
+  background-color: var(--light-gray);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: rotate(180deg);
 }
 
 .refresh-btn.loading {
-    animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  pointer-events: none;
 }
 
+/* =========================================== */
+/* ACESSIBILIDADE */
+/* =========================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* =========================================== */
+/* ANIMAÇÕES */
+/* =========================================== */
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================== */
+/* RESPONSIVIDADE */
+/* =========================================== */
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 15px;
+  }
+  
+  h1 {
+    font-size: 22px;
+  }
+  
+  .logo {
+    width: 150px;
+  }
+  
+  .indicator-name {
+    min-width: 110px;
+  }
+  
+  .atualizacao-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .refresh-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .indicator-row {
+    flex-wrap: wrap;
+  }
+  
+  .indicator-name {
+    min-width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .indicator-value, .meta-value {
+    min-width: auto;
+    flex: 1;
+  }
+}
+
+/* =========================================== */
+/* ESTILOS DE CARREGAMENTO */
+/* =========================================== */
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #666;
+}
+
+.loading::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 10px;
+}
+
+/* =========================================== */
+/* ESTILOS PARA PLACEHOLDER DINÂMICO */
+/* =========================================== */
+#matricula::placeholder {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  text-transform: none;
+  font-weight: normal;
+  color: #999;
 }
